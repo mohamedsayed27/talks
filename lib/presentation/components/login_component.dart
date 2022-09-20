@@ -7,7 +7,7 @@ import '../controllers/auth_cubit/auth_state.dart';
 import 'auth_text_form_field.dart';
 
 class LoginComponent extends StatelessWidget {
-  LoginComponent({Key? key}) : super(key: key);
+  const LoginComponent({Key? key}) : super(key: key);
 
   static final TextEditingController emailController = TextEditingController();
   static final TextEditingController passwordController = TextEditingController();
@@ -27,6 +27,9 @@ class LoginComponent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
+              const SizedBox(
+                height: 10,
+              ),
               AuthTextFormField(
                 controller: emailController,
                 labelText: 'Email',

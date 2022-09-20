@@ -62,110 +62,114 @@ class AuthScreen extends StatelessWidget {
                               topStart: Radius.circular(35)),
                           color: AppColors.blueColor,
                         ),
-                        child: LayoutBuilder(
-                            builder: (context, constraint) {
-                              return SingleChildScrollView(
-                                child: ConstrainedBox(
-                                  constraints: BoxConstraints(minHeight: constraint.maxHeight),
-                                  child: StatefulBuilder(builder: (context, setState) {
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.only(top: 10, bottom: 30),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  setState(() {
-                                                    isLoginOrRegister = true;
-                                                  });
-                                                },
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      'Sign up',
-                                                      style: TextStyle(
-                                                          fontSize: 21,
-                                                          color: isLoginOrRegister
-                                                              ? AppColors.whiteColor
-                                                              : AppColors
-                                                              .whiteDisabledColor,
-                                                          fontWeight: FontWeight.bold),
-                                                    ),
-                                                    if (isLoginOrRegister == true)
-                                                      const SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                    if (isLoginOrRegister == true)
-                                                      Container(
-                                                        width: 40,
-                                                        height: 5,
-                                                        decoration: BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                            BorderRadius.circular(
-                                                                20)),
-                                                      )
-                                                  ],
-                                                ),
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  setState(() {
-                                                    isLoginOrRegister = false;
-                                                  });
-                                                },
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      'Login',
-                                                      style: TextStyle(
-                                                          fontSize: 21,
-                                                          color: isLoginOrRegister
-                                                              ? AppColors
-                                                              .whiteDisabledColor
-                                                              : AppColors.whiteColor,
-                                                          fontWeight: FontWeight.bold),
-                                                    ),
-                                                    if (isLoginOrRegister == false)
-                                                      const SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                    if (isLoginOrRegister == false)
-                                                      Container(
-                                                        width: 40,
-                                                        height: 5,
-                                                        decoration: BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                            BorderRadius.circular(
-                                                                20)),
-                                                      )
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
+                        child: StatefulBuilder(builder: (context, setState) {
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Padding(
+                                padding:
+                                const EdgeInsets.only(top: 10, bottom: 20),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          isLoginOrRegister = true;
+                                        });
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Sign up',
+                                            style: TextStyle(
+                                                fontSize: 21,
+                                                color: isLoginOrRegister
+                                                    ? AppColors.whiteColor
+                                                    : AppColors
+                                                    .whiteDisabledColor,
+                                                fontWeight: FontWeight.bold),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(horizontal: 10),
+                                          if (isLoginOrRegister)
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                          if (isLoginOrRegister)
+                                            Container(
+                                              width: 40,
+                                              height: 5,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      20)),
+                                            )
+                                        ],
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          isLoginOrRegister = false;
+                                        });
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Login',
+                                            style: TextStyle(
+                                                fontSize: 21,
+                                                color: isLoginOrRegister
+                                                    ? AppColors
+                                                    .whiteDisabledColor
+                                                    : AppColors.whiteColor,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          if (!isLoginOrRegister)
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                          if (!isLoginOrRegister)
+                                            Container(
+                                              width: 40,
+                                              height: 5,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      20)),
+                                            )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                                  child: LayoutBuilder(
+                                    builder: (context , constraint) {
+                                      return SingleChildScrollView(
+                                        physics: const BouncingScrollPhysics(),
+                                        child: ConstrainedBox(
+                                          constraints: BoxConstraints(minHeight: constraint.maxHeight),
                                           child: isLoginOrRegister
                                               ? const RegisterComponent()
-                                              : LoginComponent(),
+                                              : const LoginComponent(),
                                         ),
-                                        _listenerWidget(),
-                                      ],
-                                    );
-                                  })
+                                      );
+                                    },
+
+                                  ),
                                 ),
-                              );
-                            },
-                          ),
+                              ),
+                              _listenerWidget(),
+                            ],
+                          );
+                        }),
                     ),
                   )
                 ],

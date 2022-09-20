@@ -19,7 +19,7 @@ class AuthTextFormField extends StatelessWidget {
       cursorColor: AppColors.whiteColor,
       // cursorHeight: 20,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+          contentPadding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
         border:border,
         enabledBorder: border,
         focusedBorder: border,

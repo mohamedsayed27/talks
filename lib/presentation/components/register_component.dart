@@ -29,6 +29,9 @@ class RegisterComponent extends StatelessWidget {
           key: formKey,
           child: Column(
             children: [
+              const SizedBox(
+                height: 10,
+              ),
               Row(
                 children: [
                   Expanded(
