@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:talks/core/utils/some_widgets.dart';
 import 'package:talks/presentation/components/auth_button.dart';
 import 'package:talks/presentation/components/radio_button_item.dart';
-import 'package:talks/presentation/controllers/auth_cubit/auth_cubit.dart';
-import 'package:talks/presentation/controllers/auth_cubit/auth_state.dart';
+import '../../domain/controllers/auth_cubit/auth_cubit.dart';
+import '../../domain/controllers/auth_cubit/auth_state.dart';
 import 'auth_text_form_field.dart';
 
-// ignore: must_be_immutable
 class RegisterComponent extends StatelessWidget {
   const RegisterComponent({Key? key}) : super(key: key);
   static final TextEditingController emailController = TextEditingController();
@@ -138,8 +136,7 @@ class RegisterComponent extends StatelessWidget {
               CustomAuthButton(
                 onTap: () async{
                   if(formKey.currentState!.validate()){
-                    final result = await cubit.posRegisterData(email: emailController.text, password: passwordController.text, firstName: firsNameController.text, lastName: secondNameController.text, gender: cubit.isMaleTrueOrFemaleFalse);
-                    showSnackBar(content: result, context: context);
+                     cubit.posRegisterData(email: emailController.text, password: passwordController.text, firstName: firsNameController.text, lastName: secondNameController.text, gender: cubit.isMaleTrueOrFemaleFalse);
                   }
                 },
                 buttonLabel: 'Login',

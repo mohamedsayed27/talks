@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:talks/core/network/local/cash_helper.dart';
 import 'package:talks/presentation/components/auth_button.dart';
-import '../../core/utils/some_widgets.dart';
-import '../controllers/auth_cubit/auth_cubit.dart';
-import '../controllers/auth_cubit/auth_state.dart';
+import '../../domain/controllers/auth_cubit/auth_cubit.dart';
+import '../../domain/controllers/auth_cubit/auth_state.dart';
 import 'auth_text_form_field.dart';
 
 class LoginComponent extends StatelessWidget {
@@ -70,8 +70,7 @@ class LoginComponent extends StatelessWidget {
               CustomAuthButton(
                 onTap: () async{
                   if(formKey.currentState!.validate()){
-                    final result = await cubit.posLoginData(email: emailController.text, password: passwordController.text);
-                    showSnackBar(content: result, context: context);
+                     cubit.posLoginData(email: emailController.text, password: passwordController.text);
                   }
                 },
                 buttonLabel: 'Login',

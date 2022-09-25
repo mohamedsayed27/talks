@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:talks/core/network/local/cash_helper.dart';
 import 'package:talks/core/utils/app_colors.dart';
+import 'package:talks/core/utils/screen_sizes.dart';
 import 'package:talks/presentation/components/login_component.dart';
 import 'package:talks/presentation/components/register_component.dart';
-import 'package:talks/presentation/controllers/auth_cubit/auth_cubit.dart';
-import '../../core/services/services_locator.dart';
+import 'package:talks/presentation/screens/home_screen.dart';
 import '../../core/utils/some_widgets.dart';
-import '../controllers/auth_cubit/auth_state.dart';
+import '../../domain/controllers/auth_cubit/auth_cubit.dart';
+import '../../domain/controllers/auth_cubit/auth_state.dart';
 
 // ignore: must_be_immutable
 class AuthScreen extends StatelessWidget {
@@ -16,18 +18,24 @@ class AuthScreen extends StatelessWidget {
 
   Widget _listenerWidget() {
     return BlocListener<AuthCubit, AuthStates>(
-      listenWhen: (previous, current){
-        return previous != current;
-      },
-      listener: (context, state) {
+      listener: (context, state) async{
+        final nav = Navigator.of(context);
         if(state is RegisterLoadingState || state is LoginLoadingState){
           showProgressIndicator(context);
         }
-        if(state is RegisterSuccessState || state is LoginSuccessState){
-          Navigator.pop(context);
+        if(state is RegisterSuccessState ){
+          await CacheHelper.saveData(key: 'token', value: state.authModel.token);
+          nav.pop();
+          nav.push(MaterialPageRoute(builder: (context) => HomeScreen()));
+          showSnackBar(content: 'Successfully', context: context);
+        }
+        if(state is LoginSuccessState){
+          await CacheHelper.saveData(key: 'token', value: state.authModel.token);
+          nav.pop();
         }
         if(state is RegisterErrorState || state is LoginErrorState){
-          Navigator.pop(context);
+          nav.pop();
+          showSnackBar(content: 'Check your data', context: context);
         }
       },
       child: Container(),
@@ -36,15 +44,16 @@ class AuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ScreenSize screenSize = ScreenSize(context);
     return SafeArea(
       child: BlocProvider(
-        create: (context) => AuthCubit(sl(),sl()),
+        create: (context) => AuthCubit(),
         child: Scaffold(
           backgroundColor: AppColors.whiteColor,
           body: Column(
                 children: [
                   SizedBox(
-                    height: 200,
+                    height: screenSize.wantedSize(size: 200),
                     child: Center(
                       child: Image.asset(
                         'assets/images/logo1.5x.png',
@@ -68,7 +77,7 @@ class AuthScreen extends StatelessWidget {
                             children: [
                               Padding(
                                 padding:
-                                const EdgeInsets.only(top: 10, bottom: 20),
+                                 EdgeInsets.only(top: screenSize.wantedSize(size: 10), bottom: screenSize.wantedSize(size: 20)),
                                 child: Row(
                                   mainAxisAlignment:
                                   MainAxisAlignment.spaceEvenly,
@@ -84,7 +93,7 @@ class AuthScreen extends StatelessWidget {
                                           Text(
                                             'Sign up',
                                             style: TextStyle(
-                                                fontSize: 21,
+                                                fontSize: screenSize.wantedSize(size: 21),
                                                 color: isLoginOrRegister
                                                     ? AppColors.whiteColor
                                                     : AppColors
@@ -92,13 +101,13 @@ class AuthScreen extends StatelessWidget {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                           if (isLoginOrRegister)
-                                            const SizedBox(
-                                              height: 5,
+                                            SizedBox(
+                                              height: screenSize.wantedSize(size: 5),
                                             ),
                                           if (isLoginOrRegister)
                                             Container(
-                                              width: 40,
-                                              height: 5,
+                                              width: screenSize.wantedSize(size: 40),
+                                              height: screenSize.wantedSize(size: 5),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
@@ -119,7 +128,7 @@ class AuthScreen extends StatelessWidget {
                                           Text(
                                             'Login',
                                             style: TextStyle(
-                                                fontSize: 21,
+                                                fontSize: screenSize.wantedSize(size: 21),
                                                 color: isLoginOrRegister
                                                     ? AppColors
                                                     .whiteDisabledColor
@@ -127,13 +136,13 @@ class AuthScreen extends StatelessWidget {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                           if (!isLoginOrRegister)
-                                            const SizedBox(
-                                              height: 5,
+                                            SizedBox(
+                                              height: screenSize.wantedSize(size: 5),
                                             ),
                                           if (!isLoginOrRegister)
                                             Container(
-                                              width: 40,
-                                              height: 5,
+                                              width: screenSize.wantedSize(size: 40),
+                                              height: screenSize.wantedSize(size: 5),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
@@ -149,7 +158,7 @@ class AuthScreen extends StatelessWidget {
                               Expanded(
                                 child: Padding(
                                   padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
+                                  EdgeInsets.symmetric(horizontal: screenSize.wantedSize(size: 10)),
                                   child: LayoutBuilder(
                                     builder: (context , constraint) {
                                       return SingleChildScrollView(

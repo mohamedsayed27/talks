@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:talks/core/network/local/cash_helper.dart';
 import 'package:talks/core/network/remote/dio_helper.dart';
-import 'package:talks/core/services/services_locator.dart';
 import 'package:talks/presentation/screens/auth_screen.dart';
-
 import 'core/utils/bloc_observer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  CacheHelper.init();
   Bloc.observer = MyBlocObserver();
-  ServicesLocator().init();
   DioHelper.init();
   CacheHelper.init();
   runApp(const MyApp());
@@ -19,7 +17,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  AuthScreen(),
+      home: AuthScreen(),
     );
   }
 }
-

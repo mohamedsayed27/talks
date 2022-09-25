@@ -4,7 +4,6 @@ import '../../core/utils/app_colors.dart';
 
 class CustomAuthButton extends StatelessWidget {
    const CustomAuthButton({Key? key,required this.onTap, required this.buttonLabel}) : super(key: key);
-
   final Function? onTap;
   final String buttonLabel;
   @override
