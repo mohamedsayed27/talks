@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:talks/core/network/local/cash_helper.dart';
-import 'package:talks/presentation/components/auth_button.dart';
+import 'package:talks/presentation/widgets/auth_button.dart';
 import '../../domain/controllers/auth_cubit/auth_cubit.dart';
 import '../../domain/controllers/auth_cubit/auth_state.dart';
-import 'auth_text_form_field.dart';
-
+import '../widgets/auth_text_form_field.dart';
 class LoginComponent extends StatelessWidget {
   const LoginComponent({Key? key}) : super(key: key);
 

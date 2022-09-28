@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'app_colors.dart';
 
-showSnackBar({required String content, required BuildContext context}) {
-  return ScaffoldMessenger.of(context)
-      .showSnackBar(SnackBar(content: Text(content)));
+void showToast(String message){
+  Fluttertoast.showToast(
+    msg: message,
+    toastLength: Toast.LENGTH_LONG,
+    timeInSecForIosWeb: 1,
+    backgroundColor: Colors.grey,
+    textColor: Colors.white,
+    fontSize: 16.0,
+  );
 }
-
 void showProgressIndicator(BuildContext context) {
   AlertDialog alertDialog = AlertDialog(
     backgroundColor: Colors.transparent,

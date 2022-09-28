@@ -8,7 +8,7 @@ import 'core/utils/bloc_observer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  CacheHelper.init();
+  // CacheHelper.init();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   CacheHelper.init();
