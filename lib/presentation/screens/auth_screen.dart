@@ -27,13 +27,13 @@ class AuthScreen extends StatelessWidget {
           await CacheHelper.saveData(key: 'token', value: state.authModel.token);
           nav.pop();
           nav.push(MaterialPageRoute(builder: (context) => HomeScreen()));
-          showToast("Successfully");
+          showToast("Registered Successfully");
         }
         if(state is LoginSuccessState){
           await CacheHelper.saveData(key: 'token', value: state.authModel.token);
           nav.pop();
           nav.push(MaterialPageRoute(builder: (context) => HomeScreen()));
-          showToast('Successfully');
+          showToast('Login Successfully');
         }
         if(state is RegisterErrorState || state is LoginErrorState){
           nav.pop();
