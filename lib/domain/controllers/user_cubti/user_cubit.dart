@@ -11,7 +11,8 @@ class UserCubit extends Cubit<UserState> {
     Webservices.getUserData(id: id).then((value) {
       emit(GetUserDataSuccesState());
     }).catchError((e) {
-      emit(GetUserDataErrorState());
+      print(e.toString());
+      emit(GetUserDataErrorState(e.toString()));
     });
   }
 }

@@ -5,10 +5,10 @@ import 'package:talks/core/network/local/cash_helper.dart';
 import 'package:talks/core/network/remote/dio_helper.dart';
 import 'package:talks/presentation/screens/auth_screen.dart';
 import 'core/utils/bloc_observer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // CacheHelper.init();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   CacheHelper.init();
@@ -24,12 +24,17 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: AuthScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(428, 926),
+      builder: (BuildContext context, Widget? child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: AuthScreen(),
+        );
+      },
     );
   }
 }

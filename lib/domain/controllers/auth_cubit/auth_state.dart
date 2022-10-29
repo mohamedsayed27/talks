@@ -28,5 +28,6 @@ class RegisterErrorState extends AuthStates{
 }
 
 class ChangePasswordVisibilityState extends AuthStates{}
+class ChangeSignupAndLoginState extends AuthStates{}
 
 class ChangeGenderState extends AuthStates{}

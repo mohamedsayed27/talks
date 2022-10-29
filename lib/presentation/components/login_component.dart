@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:talks/core/network/local/cash_helper.dart';
 import 'package:talks/presentation/widgets/auth_button.dart';
 import '../../domain/controllers/auth_cubit/auth_cubit.dart';
 import '../../domain/controllers/auth_cubit/auth_state.dart';
 import '../widgets/auth_text_form_field.dart';
 class LoginComponent extends StatelessWidget {
-  const LoginComponent({Key? key}) : super(key: key);
+   LoginComponent({Key? key}) : super(key: key);
 
-  static final TextEditingController emailController = TextEditingController();
-  static final TextEditingController passwordController = TextEditingController();
-  static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+   final TextEditingController emailController = TextEditingController();
+   final TextEditingController passwordController = TextEditingController();
+   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,13 @@ class LoginComponent extends StatelessWidget {
               AuthTextFormField(
                 controller: emailController,
                 labelText: 'Email',
-                validation: 'Enter Your Email',
+                validation: (value){
+                  if(value!.isEmpty){
+                    return 'Enter Your Email';
+                  }else{
+                    return null;
+                  }
+                },
               ),
               const SizedBox(
                 height: 10,
@@ -40,7 +45,13 @@ class LoginComponent extends StatelessWidget {
               AuthTextFormField(
                 controller: passwordController,
                 labelText: 'Password',
-                validation: 'Enter Your Password',
+                validation: (value){
+                  if(value!.isEmpty){
+                    return 'Enter Your Password';
+                  }else{
+                    return null;
+                  }
+                },
               ),
               const SizedBox(
                 height: 10,

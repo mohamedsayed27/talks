@@ -10,17 +10,27 @@ class AuthCubit extends Cubit<AuthStates> {
   static AuthCubit get(context) => BlocProvider.of(context);
 
   bool isPasswordVisible = true;
-
+  bool isLoginOrRegister = true;
   bool isMaleTrueOrFemaleFalse = true;
 
   AuthModel? authModel;
 
+  void changeBetweenSignup(){
+      isLoginOrRegister = true;
+      emit(ChangeSignupAndLoginState());
+  }
+  void changeToLogin(){
+    isLoginOrRegister = false;
+    emit(ChangeSignupAndLoginState());
+  }
   void changePasswordVisibility(bool? value) {
     isPasswordVisible = value!;
     emit(ChangePasswordVisibilityState());
   }
 
-  void changeGenderState({required bool isMale}) {
+  void changeGenderState({
+    required bool isMale,
+  }) {
     if (isMale && !isMaleTrueOrFemaleFalse) {
       isMaleTrueOrFemaleFalse = true;
       emit(ChangeGenderState());

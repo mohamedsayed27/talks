@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import '../../core/network/local/cash_helper.dart';
 import '../../domain/controllers/user_cubti/user_cubit.dart';
@@ -11,7 +12,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     String token = CacheHelper.getData(key: 'token');
     var id = Jwt.parseJwt(token);
     return BlocProvider(
@@ -26,17 +26,17 @@ class HomeScreen extends StatelessWidget {
             ),
             bottomNavigationBar: Padding(
               padding:
-              const EdgeInsets.only(left: 90, right: 90, bottom: 15),
+               EdgeInsets.only(left: 107.4.w, right: 99.w, bottom: 50.h),
               child: CustomPaint(
-                size: const Size(double.infinity, 40),
+                size: Size(double.infinity, 40.h),
                 painter: CustomNavigationBar(),
               ),
             ),
             floatingActionButton: Padding(
-              padding: const EdgeInsets.only(bottom: 30),
+              padding:  EdgeInsets.only(bottom: 40.h),
               child: Container(
-                height: 50,
-                width: 50,
+                height: 70.h,
+                width: 70.w,
                 decoration: const BoxDecoration(
                     shape: BoxShape.circle, color: Colors.green),
               ),

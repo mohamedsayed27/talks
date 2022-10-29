@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:talks/presentation/widgets/auth_button.dart';
+import '../../core/utils/app_colors.dart';
 import '../widgets/radio_button_item.dart';
 import '../../domain/controllers/auth_cubit/auth_cubit.dart';
 import '../../domain/controllers/auth_cubit/auth_state.dart';
 import '../widgets/auth_text_form_field.dart';
 class RegisterComponent extends StatelessWidget {
-  const RegisterComponent({Key? key}) : super(key: key);
-  static final TextEditingController emailController = TextEditingController();
-  static final TextEditingController passwordController = TextEditingController();
-  static final TextEditingController firsNameController = TextEditingController();
-  static final TextEditingController secondNameController = TextEditingController();
-  static final TextEditingController confirmPasswordController = TextEditingController();
-  static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+   RegisterComponent({Key? key}) : super(key: key);
+   final TextEditingController emailController = TextEditingController();
+   final TextEditingController passwordController = TextEditingController();
+   final TextEditingController firsNameController = TextEditingController();
+   final TextEditingController secondNameController = TextEditingController();
+   final TextEditingController confirmPasswordController = TextEditingController();
+   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +25,13 @@ class RegisterComponent extends StatelessWidget {
       builder: (context, state) {
         var cubit = AuthCubit.get(context);
         return Form(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           key: formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 10,
+               SizedBox(
+                height: 27.h,
               ),
               Row(
                 children: [
@@ -35,47 +39,89 @@ class RegisterComponent extends StatelessWidget {
                     child: AuthTextFormField(
                       controller: firsNameController,
                       labelText: 'Firs name',
-                      validation: 'Enter Your first name',
+                      validation:  (value){
+                        if(value!.isEmpty){
+                          return 'Enter Your first name';
+                        }else{
+                          return null;
+                        }
+                      },
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
+                  SizedBox(
+                    width: 16.w,
                   ),
                   Expanded(
                     child: AuthTextFormField(
                       controller: secondNameController,
                       labelText: 'second name',
-                      validation: 'Enter Your second name',
+                      validation: (value){
+                        if(value!.isEmpty){
+                          return 'Enter Your second name';
+                        }else{
+                          return null;
+                        }
+                      },
                     ),
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 10,
+               SizedBox(
+                height: 10.h,
               ),
               AuthTextFormField(
                 controller: emailController,
                 labelText: 'Email',
-                validation: 'Enter Your Email',
+                validation: (value){
+                  if(value!.isEmpty){
+                    return 'Enter Your Email';
+                  }else{
+                    return null;
+                  }
+                },
               ),
-              const SizedBox(
-                height: 10,
+               SizedBox(
+                height: 16.h,
               ),
               AuthTextFormField(
                 controller: passwordController,
                 labelText: 'Password',
-                validation: 'Enter Your Password',
+                validation: (value){
+                  RegExp regex =
+                  RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                  if (value!.isEmpty) {
+                    return 'Please enter password';
+                  } else if(value.length<6){
+                    return ("Password Must be more than 5 characters");
+                  }else if(!regex.hasMatch(value)){
+                    return 'Password must contain upper,lower,digit and Special character';
+                  }else{
+                    return null;
+                  }
+                },
+              ),SizedBox(
+                height: 8.h,
               ),
-              const SizedBox(
-                height: 10,
+               Text('Password must contain upper,lower,digit and Special character',style: TextStyle(color: AppColors.whiteColor,fontSize: 14.sp),),
+               SizedBox(
+                height: 15.h,
               ),
               AuthTextFormField(
                 controller: confirmPasswordController,
                 labelText: 'Confirm password',
-                validation: 'Password aren\'t compatible',
+                validation: (value){
+                  if(value!.isEmpty){
+                    return 'Enter password';
+                  }else if(passwordController.text != confirmPasswordController.text){
+                    return  'Password not compatible';
+                  }else{
+                    return null;
+                  }
+
+                },
               ),
-              const SizedBox(
-                height: 10,
+               SizedBox(
+                height: 50.h,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,8 +175,8 @@ class RegisterComponent extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 30,
+               SizedBox(
+                height: 32.h,
               ),
               CustomAuthButton(
                 onTap: () async{

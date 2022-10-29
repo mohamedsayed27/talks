@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomNavigationBar extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()..color = Colors.blue..style = PaintingStyle.fill;
-    Path path = Path()..moveTo(30, 50);
-    path.arcToPoint(const Offset(30,0),radius: const Radius.circular(10));
-    path.quadraticBezierTo(30, 0, 50, 0);
-    path.quadraticBezierTo(60, 0, 70, 10);
-    path.arcToPoint(const Offset(110, 10),radius: const Radius.circular(30.0),clockwise: false);
-    path.quadraticBezierTo(120, 0, 130, 0);
-    path.quadraticBezierTo(130, 0, 150, 0);
-    path.arcToPoint(const Offset(150, 50),radius: const Radius.circular(10));
+    Path path = Path()..moveTo(30.w, 50.h);
+    path.arcToPoint( Offset(30.w,0),radius:  Radius.circular(10.r));
+    path.quadraticBezierTo(30.w, 0, 50.w, 0);
+    path.quadraticBezierTo(60.w, 0, 70.w, 10.h);
+    path.arcToPoint( Offset(110.w, 10.h),radius:  Radius.circular(30.0.r),clockwise: false);
+    path.quadraticBezierTo(120.w, 0, 130.w, 0);
+    path.quadraticBezierTo(130.w, 0, 150.w, 0);
+    path.arcToPoint( Offset(150.w, 50.h),radius:  Radius.circular(10.r));
     canvas.drawPath(path, paint);
-
   }
 
   @override

@@ -33,8 +33,12 @@ class Webservices{
     return response;
   }
 
-  static Future<Response> getUserData({required String id}) async{
-    Response response = await DioHelper.getData(url: '${AppConstants.getUserDataEndPoint}$id');
+  static Future<Response> getUserData({
+    required String id,
+  })
+  async{
+    Response response = await DioHelper.getData(url:'${AppConstants.getUserDataEndPoint}$id');
+    print(response);
     return response;
   }
 }
