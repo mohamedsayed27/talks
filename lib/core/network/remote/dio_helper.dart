@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:talks/core/utils/app_constants.dart';
+import '../../utils/end_points.dart';
 
 class DioHelper {
   static late Dio dio;
 
   static init() {
     dio = Dio(BaseOptions(
-        baseUrl: AppConstants.baseUrl,
+        baseUrl: AppEndpoints.baseUrl,
         receiveDataWhenStatusError: true,
+        // connectTimeout: 2000
         // headers: {'Content-Type': 'application/json'}
         ));
   }

@@ -8,13 +8,13 @@ import '../../domain/controllers/auth_cubit/auth_cubit.dart';
 import '../../domain/controllers/auth_cubit/auth_state.dart';
 import '../widgets/auth_text_form_field.dart';
 class RegisterComponent extends StatelessWidget {
-   RegisterComponent({Key? key}) : super(key: key);
-   final TextEditingController emailController = TextEditingController();
-   final TextEditingController passwordController = TextEditingController();
-   final TextEditingController firsNameController = TextEditingController();
-   final TextEditingController secondNameController = TextEditingController();
-   final TextEditingController confirmPasswordController = TextEditingController();
-   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+   const RegisterComponent({Key? key}) : super(key: key);
+   static final TextEditingController emailController = TextEditingController();
+   static final TextEditingController passwordController = TextEditingController();
+   static final TextEditingController firsNameController = TextEditingController();
+   static final TextEditingController secondNameController = TextEditingController();
+   static final TextEditingController confirmPasswordController = TextEditingController();
+   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class RegisterComponent extends StatelessWidget {
                 ],
               ),
                SizedBox(
-                height: 10.h,
+                height: 16.h,
               ),
               AuthTextFormField(
                 controller: emailController,
@@ -88,13 +88,13 @@ class RegisterComponent extends StatelessWidget {
                 labelText: 'Password',
                 validation: (value){
                   RegExp regex =
-                  RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                  RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{4,}$');
                   if (value!.isEmpty) {
                     return 'Please enter password';
-                  } else if(value.length<6){
-                    return ("Password Must be more than 5 characters");
-                  }else if(!regex.hasMatch(value)){
+                  } else if(!regex.hasMatch(value)){
                     return 'Password must contain upper,lower,digit and Special character';
+                  }else if(value.length<6){
+                    return ("Password Must be more than 5 characters");
                   }else{
                     return null;
                   }

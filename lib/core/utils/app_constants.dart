@@ -1,6 +1,5 @@
-class AppConstants{
-  static const String baseUrl = 'http://www.talks.somee.com/';
-  static const String registerEndPoint = 'Auth/Register';
-  static const String loginEndPoint = 'Auth/Login';
-  static const String getUserDataEndPoint = 'Users/Get/';
-}
+import 'package:talks/core/network/local/cash_helper.dart';
+
+var token = CacheHelper.getData(key: "token");
+
+var userId = CacheHelper.getData(key: "user_id");

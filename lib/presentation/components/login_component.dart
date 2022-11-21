@@ -7,9 +7,9 @@ import '../widgets/auth_text_form_field.dart';
 class LoginComponent extends StatelessWidget {
    LoginComponent({Key? key}) : super(key: key);
 
-   final TextEditingController emailController = TextEditingController();
-   final TextEditingController passwordController = TextEditingController();
-   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+   static final TextEditingController emailController = TextEditingController();
+   static final TextEditingController passwordController = TextEditingController();
+   static final  formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

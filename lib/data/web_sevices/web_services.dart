@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:talks/core/network/remote/dio_helper.dart';
-import 'package:talks/core/utils/app_constants.dart';
+import '../../core/utils/end_points.dart';
 
 
 class Webservices{
@@ -12,7 +12,7 @@ class Webservices{
   required String secondName,
     required bool gender
 }) async{
-    Response response = await DioHelper.postData(url: AppConstants.registerEndPoint, data:  {
+    Response response = await DioHelper.postData(url: AppEndpoints.registerEndPoint, data:  {
       "email": email,
       "password": password,
       "firstName": firstName,
@@ -26,7 +26,7 @@ class Webservices{
     required String email,
     required String password,
   }) async{
-    Response response = await DioHelper.postData(url: AppConstants.loginEndPoint, data:  {
+    Response response = await DioHelper.postData(url: AppEndpoints.loginEndPoint, data:  {
       "email": email,
       "password": password,
     });
@@ -37,7 +37,7 @@ class Webservices{
     required String id,
   })
   async{
-    Response response = await DioHelper.getData(url:'${AppConstants.getUserDataEndPoint}$id');
+    Response response = await DioHelper.getData(url:'${AppEndpoints.getUserDataEndPoint}$id');
     print(response);
     return response;
   }

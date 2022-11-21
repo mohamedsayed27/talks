@@ -26,17 +26,23 @@ class HomeScreen extends StatelessWidget {
             ),
             bottomNavigationBar: Padding(
               padding:
-               EdgeInsets.only(left: 107.4.w, right: 99.w, bottom: 50.h),
-              child: CustomPaint(
-                size: Size(double.infinity, 40.h),
-                painter: CustomNavigationBar(),
+               EdgeInsets.only(left: 124.w,right: 124.w, bottom: 30.h),
+              child: Stack(
+                children: [
+                  CustomPaint(
+                    size: Size(250.w, 66.h),
+                    painter: CustomNavigationBar(),
+                  ),
+                  Positioned(child: Icon(Icons.account_balance),left: 30.w,top: 18.h,),
+                  Positioned(child: Icon(Icons.account_balance),right: 30.w,top: 18.h,)
+                ],
               ),
             ),
             floatingActionButton: Padding(
-              padding:  EdgeInsets.only(bottom: 40.h),
+              padding:  EdgeInsets.only(bottom: 35.h),
               child: Container(
-                height: 70.h,
-                width: 70.w,
+                height: 60.h,
+                width: 60.w,
                 decoration: const BoxDecoration(
                     shape: BoxShape.circle, color: Colors.green),
               ),
