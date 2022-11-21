@@ -9,6 +9,7 @@ class UserCubit extends Cubit<UserState> {
   void getUserData({required String id}) {
     emit(GetUserDataLoadingState());
     Webservices.getUserData(id: id).then((value) {
+      print(value);
       emit(GetUserDataSuccesState());
     }).catchError((e) {
       print(e.toString());

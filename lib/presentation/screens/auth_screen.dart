@@ -10,11 +10,8 @@ import '../widgets/some_widgets.dart';
 import '../../domain/controllers/auth_cubit/auth_cubit.dart';
 import '../../domain/controllers/auth_cubit/auth_state.dart';
 
-// ignore: must_be_immutable
 class AuthScreen extends StatelessWidget {
-  AuthScreen({super.key});
-
-  bool isLoginOrRegister = true;
+  const AuthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,30 +27,36 @@ class AuthScreen extends StatelessWidget {
                 showProgressIndicator(context);
               }
               if (state is RegisterSuccessState) {
-                await CacheHelper.saveData(
-                    key: 'token', value: state.authModel.token);
-                nav.pop();
-                nav.push(
-                  MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
-                  ),
-                );
-                showToast("Registered Successfully");
+                if (state.authModel.message == "success") {
+                  await CacheHelper.saveData(
+                      key: 'token', value: state.authModel.token);
+                  nav.pop();
+                  nav.push(MaterialPageRoute(
+                      builder: (context) => const HomeScreen()));
+                  showToast("Registered Successfully");
+                }
+                if(state.authModel.message == 'Email Is Already Token'){
+                  nav.pop();
+                  showToast(state.authModel.message);
+                }
               }
               if (state is LoginSuccessState) {
-                await CacheHelper.saveData(
-                    key: 'token', value: state.authModel.token);
-                nav.pop();
-                nav.push(
-                  MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
-                  ),
-                );
-                showToast('Login Successfully');
+                if (state.authModel.message == "success") {
+                  await CacheHelper.saveData(
+                      key: 'token', value: state.authModel.token);
+                  nav.pop();
+                  nav.push(MaterialPageRoute(
+                      builder: (context) => const HomeScreen()));
+                  showToast("Registered Successfully");
+                }
+                if(state.authModel.message == 'Inavlid Email Or Password'){
+                  nav.pop();
+                  showToast(state.authModel.message);
+                }
               }
               if (state is RegisterErrorState || state is LoginErrorState) {
                 nav.pop();
-                showToast('Check your data');
+                showToast('Check your Connection');
               }
             },
             builder: (context, state) {
@@ -83,11 +86,9 @@ class AuthScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Padding(
-                            padding:
-                            EdgeInsets.only(top: 10.h, bottom: 20.h),
+                            padding: EdgeInsets.only(top: 10.h, bottom: 20.h),
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 InkWell(
                                   onTap: () {
@@ -101,8 +102,7 @@ class AuthScreen extends StatelessWidget {
                                             fontSize: 21.sp,
                                             color: cubit.isLoginOrRegister
                                                 ? AppColors.whiteColor
-                                                : AppColors
-                                                .whiteDisabledColor,
+                                                : AppColors.whiteDisabledColor,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       if (cubit.isLoginOrRegister)
@@ -116,8 +116,7 @@ class AuthScreen extends StatelessWidget {
                                           decoration: BoxDecoration(
                                               color: Colors.white,
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  20.r)),
+                                                  BorderRadius.circular(20.r)),
                                         )
                                     ],
                                   ),
@@ -133,8 +132,7 @@ class AuthScreen extends StatelessWidget {
                                         style: TextStyle(
                                             fontSize: 21.sp,
                                             color: cubit.isLoginOrRegister
-                                                ? AppColors
-                                                .whiteDisabledColor
+                                                ? AppColors.whiteDisabledColor
                                                 : AppColors.whiteColor,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -149,8 +147,7 @@ class AuthScreen extends StatelessWidget {
                                           decoration: BoxDecoration(
                                               color: Colors.white,
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  20.r)),
+                                                  BorderRadius.circular(20.r)),
                                         )
                                     ],
                                   ),
@@ -160,8 +157,7 @@ class AuthScreen extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                              EdgeInsets.symmetric(horizontal: 10.w),
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
                               child: LayoutBuilder(
                                 builder: (context, constraint) {
                                   return SingleChildScrollView(
