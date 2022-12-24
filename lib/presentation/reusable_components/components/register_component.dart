@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:talks/presentation/widgets/auth_button.dart';
-import '../../core/utils/app_colors.dart';
+import '../../../core/utils/app_colors.dart';
+import '../widgets/auth_button.dart';
 import '../widgets/radio_button_item.dart';
-import '../../domain/controllers/auth_cubit/auth_cubit.dart';
-import '../../domain/controllers/auth_cubit/auth_state.dart';
+import '../../../domain/controllers/auth_cubit/auth_cubit.dart';
+import '../../../domain/controllers/auth_cubit/auth_state.dart';
 import '../widgets/auth_text_form_field.dart';
 class RegisterComponent extends StatelessWidget {
    const RegisterComponent({Key? key}) : super(key: key);

@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:talks/core/network/local/cash_helper.dart';
 import 'package:talks/core/utils/app_colors.dart';
-import 'package:talks/presentation/components/login_component.dart';
-import 'package:talks/presentation/components/register_component.dart';
 import 'package:talks/presentation/screens/home_screen.dart';
-import '../widgets/some_widgets.dart';
 import '../../domain/controllers/auth_cubit/auth_cubit.dart';
 import '../../domain/controllers/auth_cubit/auth_state.dart';
+import '../reusable_components/components/login_component.dart';
+import '../reusable_components/components/register_component.dart';
+import '../reusable_components/widgets/some_widgets.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -166,8 +166,8 @@ class AuthScreen extends StatelessWidget {
                                       constraints: BoxConstraints(
                                           minHeight: constraint.maxHeight),
                                       child: cubit.isLoginOrRegister
-                                          ? RegisterComponent()
-                                          : LoginComponent(),
+                                          ? const RegisterComponent()
+                                          : const LoginComponent(),
                                     ),
                                   );
                                 },
