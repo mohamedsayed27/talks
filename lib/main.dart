@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:talks/core/network/local/cash_helper.dart';
 import 'package:talks/core/network/remote/dio_helper.dart';
-import 'package:talks/presentation/screens/auth_screen.dart';
+import 'package:talks/presentation/screens/home_screen.dart';
 import 'core/utils/bloc_observer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  DioHelper.init();
-  CacheHelper.init();
+  await DioHelper.init();
+  await CacheHelper.init();
   runApp(const MyApp());
 }
 
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: AuthScreen(),
+          home: const HomeScreen(),
         );
       },
     );

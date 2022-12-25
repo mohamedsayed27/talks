@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:talks/presentation/widgets/auth_button.dart';
-import '../../domain/controllers/auth_cubit/auth_cubit.dart';
-import '../../domain/controllers/auth_cubit/auth_state.dart';
+import '../widgets/auth_button.dart';
 import '../widgets/auth_text_form_field.dart';
+import '../../../domain/controllers/auth_cubit/auth_cubit.dart';
+import '../../../domain/controllers/auth_cubit/auth_state.dart';
 class LoginComponent extends StatelessWidget {
-   LoginComponent({Key? key}) : super(key: key);
+   const LoginComponent({Key? key}) : super(key: key);
 
    static final TextEditingController emailController = TextEditingController();
    static final TextEditingController passwordController = TextEditingController();

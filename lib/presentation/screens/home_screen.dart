@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jwt_decode/jwt_decode.dart';
+import 'package:talks/core/utils/svg_path.dart';
 import '../../core/network/local/cash_helper.dart';
 import '../../domain/controllers/user_cubti/user_cubit.dart';
 import '../../domain/controllers/user_cubti/user_state.dart';
-import '../widgets/custom_nav_bar.dart';
+import '../reusable_components/widgets/custom_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -33,8 +35,8 @@ class HomeScreen extends StatelessWidget {
                     size: Size(250.w, 66.h),
                     painter: CustomNavigationBar(),
                   ),
-                  Positioned(child: Icon(Icons.account_balance),left: 30.w,top: 18.h,),
-                  Positioned(child: Icon(Icons.account_balance),right: 30.w,top: 18.h,)
+                  Positioned(left: 30.w,top: 18.h,child: SvgPicture.asset(SvgPath.addFriendIcon,width: 44.w,height: 30.h,color: Colors.green,),),
+                  Positioned(right: 30.w,top: 18.h,child: SvgPicture.asset(SvgPath.notificationIcon,width: 30.w,height: 34.7.h,color: Colors.white),)
                 ],
               ),
             ),
