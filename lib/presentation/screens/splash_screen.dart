@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:talks/core/utils/app_colors.dart';
+import 'package:talks/core/app_colors/app_colors.dart';
+import 'package:talks/core/app_router/route_names.dart';
 
-import '../../core/utils/images_path.dart';
+import '../../core/assets_path/images_path.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -24,7 +25,9 @@ class _SplashScreenState extends State<SplashScreen> {
   onLoading() {
     Timer(
       const Duration(seconds: 3),
-        (){}
+        (){
+        Navigator.pushReplacementNamed(context, ScreenName.authScreen);
+        }
     );
   }
 
@@ -37,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
         decoration:  BoxDecoration(
           color: AppColors.whiteColor,
         ),
-        child: Center(child: Image.asset(ImagesPath.logo,width: 212.w,height: 107.h,)),
+        child: Center(child: Image.asset(ImagesPath.logo,width: 400.w,height: 350.h,)),
       ),
     );
   }

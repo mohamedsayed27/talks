@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:talks/core/utils/app_colors.dart';
+import 'package:talks/core/app_colors/app_colors.dart';
 
 
-// ignore: must_be_immutable
 class CustomRadioButtonItem extends StatelessWidget {
-    CustomRadioButtonItem({Key? key, required this.genderTitle,required this.isMaleTrueOrFemaleFalse,required this.color}) : super(key: key);
+    const CustomRadioButtonItem({Key? key, required this.genderTitle,required this.isMaleTrueOrFemaleFalse,required this.color}) : super(key: key);
    final String genderTitle;
-    bool isMaleTrueOrFemaleFalse = true;
-    Color? color;
+    final bool isMaleTrueOrFemaleFalse ;
+    final Color color;
 
    @override
   Widget build(BuildContext context) {

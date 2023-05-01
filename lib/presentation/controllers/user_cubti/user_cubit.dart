@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:talks/domain/controllers/user_cubti/user_state.dart';
+import 'package:talks/presentation/controllers/user_cubti/user_state.dart';
 
 import '../../../data/web_sevices/web_services.dart';
 
