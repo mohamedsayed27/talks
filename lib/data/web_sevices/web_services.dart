@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:talks/core/network/remote/dio_helper.dart';
-import '../../core/utils/end_points.dart';
+import 'package:talks/core/network/dio_helper.dart';
+import '../../core/network/end_points.dart';
 
 
 class Webservices{
